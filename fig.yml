@@ -1,0 +1,19 @@
+web:
+  build: .
+  command: /data/node_modules/.bin/grunt
+  links:
+   - db
+  ports:
+   - "3000:3000"
+  environment: 
+   NODE_ENV: development
+  volumes:
+   - .:/data
+  expose:
+    - "3000"
+db:
+  image: dockerfile/mongodb
+  ports: 
+   - "27017:27017"
+  expose:
+   - "27017"

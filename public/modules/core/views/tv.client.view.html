@@ -1,0 +1,9 @@
+<section data-ng-controller="TVController">
+ <h1>
+   {{url.urls[0].url_long}}
+ </h1>
+  <qrcode  version="2" error-correction-level="M" size="200"  data="{{url.urls[0].url_short}}"></qrcode>
+  <span>
+    {{playUrl}}
+  </span>
+</section>

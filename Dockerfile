@@ -1,15 +1,18 @@
 FROM dockerfile/nodejs
 
 WORKDIR /data
-Run npm install -g cnpm --registry=https://registry.npm.taobao.org
+# Run npm install -g cnpm --registry=https://registry.npm.taobao.org
+
+RUN npm update
+RUN apt-get install gcc make build-essential
 
 # Install Mean.JS Prerequisites
-RUN cnpm install -g grunt-cli
-RUN cnpm install -g bower
+RUN npm install -g grunt-cli
+RUN npm install -g bower
 
 # Install Mean.JS packages
-ADD package.json /home/mean/package.json
-RUN cnpm install
+ADD package.json /data/package.json
+RUN npm install
 
 # Manually trigger bower. Why doesnt this work via npm install?
 ADD .bowerrc /data/.bowerrc

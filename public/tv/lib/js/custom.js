@@ -12,21 +12,6 @@ $(document).ready(function () {
     $(".navbar").sticky({topSpacing: 0});
 });
 
-
-
-/* ==============================================
- main flex slider
- =============================================== */
-$(window).load(function () {
-    $('.main-flex-slider').flexslider({
-        slideshowSpeed: 5000,
-        directionNav: false,
-        animation: "fade",
-        controlNav: false
-    });
-});
-
-
 /* ==============================================
  Auto Close Responsive Navbar on Click
  =============================================== */
@@ -45,26 +30,6 @@ close_toggle();
 
 $(window).resize(close_toggle);
 
-
-
-/***================================================== */
-$('.chart').each(function () {
-    var $this = $(this);
-    var color = $(this).data('scale-color');
-
-    setTimeout(function () {
-        $this.filter(':visible').waypoint(function (direction) {
-            $(this).easyPieChart({
-                barColor: color,
-                trackColor: '#fff',
-                onStep: function (from, to, percent) {
-                    jQuery(this.el).find('.percent').text(Math.round(percent));
-                }
-            });
-        }, {offset: '100%'});
-    }, 500);
-
-});
 
 //owl carousel for testimonials
 $(document).ready(function () {
@@ -85,23 +50,7 @@ $(document).ready(function () {
 
 });
 
-/*=========================*/
-/*========portfolio mix====*/
-/*==========================*/
-$('#grid').mixitup();
 
-
-/*=========================*/
-/*========on hover dropdown navigation====*/
-/*==========================*/
-
-
-/************parallax*********************/
-$(function () {
-    $.stellar({
-        horizontalScrolling: false
-    });
-});
 
 
 /* ==============================================
@@ -129,11 +78,6 @@ var wow = new WOW(
 wow.init();
 
 
-//MAGNIFIC POPUP
-$('.show-image').magnificPopup({type: 'image'});
-
-
-
 //smooth scroll
 $(function () {
     $('.scrollto a[href*=#]:not([href=#])').click(function () {
@@ -151,16 +95,6 @@ $(function () {
     });
 });
 
-
-
-// Backstretch - Slider on Background
-
-
-$(".fullscreen").backstretch([
-    "img/showcase-5.jpg",
-    "img/showcase-2.jpg",
-    "img/showcase-3.jpg"
-], {duration: 5000, fade: 1000});
 
 
 //back to top

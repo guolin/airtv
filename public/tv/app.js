@@ -48,6 +48,7 @@ $( document ).ready(function(){
         });
 
         socket.on('src-qq', function(data){
+            console.log(data);
             getQQVideo(data.vid).done(function(data){
                 play_url(data, player);
             });

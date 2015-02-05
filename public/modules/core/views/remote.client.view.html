@@ -10,4 +10,18 @@
   <button ng-click="customSrc()">提交</button>
   <input type="text" name="url" ng-model="vid" />
   <button ng-click="customQQSrc()">提交</button>
+
+  <hr />
+
+  <div data-ng-controller="VideosController" data-ng-init="find()">
+    <ul>
+      <li ng-repeat="video in videos">
+        <img ng-src="{{video.img}}" />
+        <a href="#" ng-click="customQQSrc(video.source.id)" ><h4>{{video.name}}</h4></a>
+      </li>
+    </ul>
+  </div>
+
+
+
 </section>

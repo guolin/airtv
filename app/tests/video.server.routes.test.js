@@ -16,6 +16,119 @@ var credentials, user, video;
 /**
  * Video routes tests
  */
+
+describe("video imp tests", function(){
+    beforeEach(function(done) {
+        // Create user credentials
+        credentials = {
+            username: 'username',
+            password: 'password'
+        };
+
+        // Create a new user
+        user = new User({
+            firstName: 'Full',
+            lastName: 'Name',
+            displayName: 'Full Name',
+            email: 'test@test.com',
+            username: credentials.username,
+            password: credentials.password,
+            provider: 'local'
+        });
+
+        // Save a user to the test db and create new Video
+        user.save(function() {
+            video = {
+                name: 'Video Name'
+            };
+
+            done();
+        });
+    });
+
+    afterEach(function(done) {
+        User.remove().exec();
+        Video.remove().exec();
+        done();
+    });
+
+    it('should not be able to import from post', function(done) {
+
+        agent.post('/auth/signin')
+            .send(credentials)
+            .expect(200)
+            .end(function(signinErr, signinRes) {
+                // Handle signin error
+                if (signinErr) done(signinErr);
+
+                // Get the userId
+                var userId = user.id;
+
+                // Save a new Video
+                agent.post('/videos/imp')
+                    .send({url:"http://v.qq.com/cover/7/7kbmjfeco599lp2/o0015mpip8x.html"})
+                    .expect(200)
+                    .end(function(videoSaveErr, videoSaveRes) {
+                        if (videoSaveErr) done(videoSaveErr);
+
+                        // Get a list of Videos
+                        agent.get('/videos')
+                            .end(function(videosGetErr, videosGetRes) {
+                                // Handle Video save error
+                                if (videosGetErr) done(videosGetErr);
+
+                                // Get Videos list
+                                var videos = videosGetRes.body;
+
+                                // Set assertions
+                                (videos[0].name).should.match('长大 第08集');
+
+                                // Call the assertion callback
+                                done();
+                            });
+                    });
+            });
+    });
+
+    it('should not be able to import from get', function(done) {
+
+        agent.post('/auth/signin')
+            .send(credentials)
+            .expect(200)
+            .end(function(signinErr, signinRes) {
+                // Handle signin error
+                if (signinErr) done(signinErr);
+
+                // Get the userId
+                var userId = user.id;
+
+                // Save a new Video
+                agent.get('/videos/imp?url=http://v.qq.com/cover/7/7kbmjfeco599lp2/o0015mpip8x.html')
+                    .expect(200)
+                    .end(function(videoSaveErr, videoSaveRes) {
+                        if (videoSaveErr) done(videoSaveErr);
+
+                        // Get a list of Videos
+                        agent.get('/videos')
+                            .end(function(videosGetErr, videosGetRes) {
+                                // Handle Video save error
+                                if (videosGetErr) done(videosGetErr);
+
+                                // Get Videos list
+                                var videos = videosGetRes.body;
+
+                                // Set assertions
+                                (videos[0].name).should.match('长大 第08集');
+
+                                // Call the assertion callback
+                                done();
+                            });
+                    });
+            });
+    });
+
+});
+
 describe('Video CRUD tests', function() {
 	beforeEach(function(done) {
 		// Create user credentials

@@ -27,6 +27,29 @@ exports.create = function(req, res) {
 };
 
 /**
+ * Create a Video from url
+ */
+exports.imp = function(req, res) {
+    var url = req.body.url;
+    if(!url){
+        url = req.query.url;
+    }
+    Video.getFromUrl(url, function(body){
+        var video = new Video(body);
+        video.user = req.user;
+        video.save(function(err) {
+            if (err) {
+                return res.status(400).send({
+                    message: errorHandler.getErrorMessage(err)
+                });
+            } else {
+                res.jsonp(video);
+            }
+        });
+    });
+};
+
+/**
  * Show the current Video
  */
 exports.read = function(req, res) {

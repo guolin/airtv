@@ -4,6 +4,9 @@ module.exports = function(app) {
 	var users = require('../../app/controllers/users.server.controller');
 	var videos = require('../../app/controllers/videos.server.controller');
 
+    app.route('/videos/imp')
+        .all(videos.imp);
+
 	// Videos Routes
 	app.route('/videos')
 		.get(videos.list)

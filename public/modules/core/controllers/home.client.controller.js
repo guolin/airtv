@@ -42,8 +42,12 @@ angular.module('core').
                 var data = { src:$scope.customUrl, tvId:$scope.tvId };
                 socket.emit('src', data)
             };
-            $scope.customQQSrc = function(){
-                var data = { vid:$scope.vid, tvId:$scope.tvId };
+            $scope.customQQSrc = function(vid){
+                var vvid = vid;
+                if(!vvid){
+                    vvid = $scope.vid
+                }
+                var data = { vid:vvid, tvId:$scope.tvId };
                 socket.emit('src-qq', data)
             };
             $scope.play = function(){

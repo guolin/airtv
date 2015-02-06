@@ -23,7 +23,7 @@ $( document ).ready(function(){
         console.log("链接成功");
         socket.emit('subscribe', {guid:guid});
 
-        var remoteUrl = "http://192.168.1.102:3000/%23!/remote/"+guid;
+        var remoteUrl = "http://"+window.location.host+"/%23!/remote/"+guid;
         $.getJSON("/api/short?url="+remoteUrl, function(data){
             console.log(data);
             remoteUrl = data.urls[0].url_short;

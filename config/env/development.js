@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = {
-	db: 'mongodb://localhost/airtv-dev',
+	db: 'mongodb://db/airtv-dev',
 	app: {
 		title: 'airtv - Development Environment'
 	},

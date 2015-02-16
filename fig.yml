@@ -1,16 +1,22 @@
 web:
   build: .
-  command: /data/node_modules/.bin/grunt
+  command: /data/node_modules/.bin/grunt server
   links:
    - db
   ports:
    - "3000:3000"
+  expose:
+   - "3000"
   environment: 
    NODE_ENV: development
   volumes:
-   - .:/data
-  expose:
-    - "3000"
+   - ./app:/data/app
+   - ./public:/data/public
+   - ./config:/data/config
+   - ./server.js:/data/server.js
+   - ./package.json:/data/package.json
+   - ./gruntfile.js:/data/gruntfile.js
+
 db:
   image: dockerfile/mongodb
   ports: 

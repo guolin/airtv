@@ -1,25 +1,17 @@
 web:
   # image: dockerfile/nodejs
   build: .
-<<<<<<< Updated upstream
-  command: /data/node_modules/.bin/grunt
-=======
   command: sh -c ./start.sh
->>>>>>> Stashed changes
   links:
-   - MONGODB
+   - db
   ports:
    - "3000:3000"
+  expose:
+   - "3000"
   environment: 
    NODE_ENV: development
-   MONGO_URL: mongodb://MONGODB:27017
+   MONGO_URL: mongodb://db:27017
   volumes:
-<<<<<<< Updated upstream
-   - .:/data
-  expose:
-    - "3000"
-db:
-=======
    - ./app:/data/app
    - ./config:/data/config
    - ./public:/data/public
@@ -30,8 +22,7 @@ db:
    - ./server.js:/data/server.js
    - ./start.sh:/data/start.sh
 
-MONGODB:
->>>>>>> Stashed changes
+db:
   image: dockerfile/mongodb
   environment: 
    AUTH: no

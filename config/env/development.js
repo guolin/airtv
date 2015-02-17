@@ -1,11 +1,7 @@
 'use strict';
 
 module.exports = {
-<<<<<<< Updated upstream
-	db: 'mongodb://localhost/airtv-dev',
-=======
 	db: process.env.MONGO_URL +'/airtv-dev' || 'mongodb://db/airtv-dev',
->>>>>>> Stashed changes
 	app: {
 		title: 'airtv - dev'
 	},

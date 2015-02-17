@@ -45,9 +45,9 @@ VideoSchema.statics.getFromUrl = function (url, cb){
             if(id){
                 id = id[1];
             }else{
-                var u = $("meta[itemprop=url]").attr("content")
-                id = u.match(/(\w+).html/)
-                if(id){
+                var u = $("meta[itemprop=url]").attr("content");
+                if(u && u.match(/(\w+).html/)){
+                    id = u.match(/(\w+).html/);
                     id = id[1]
                 }else{
                     id = html.match(/vid=(\w+)/);

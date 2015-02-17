@@ -1,3 +1,4 @@
+echo "-------------------- apt-get update --------------------"
 apt-get install gcc make build-essential
 
 echo "-------------------- npm install    --------------------"

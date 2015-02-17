@@ -1,27 +1,39 @@
 <section data-ng-controller="RemoteController">
-  <a href="#" ng-click="src(1)">单身男女</a> <br />
-  <a href="#" ng-click="src(2)">小宝贝</a> <br />
-  <a href="#" ng-click="play()">播放</a> <br />
-  <a href="#" ng-click="pause(1)">暂停</a> <br />
 
-  <hr />
+  <div class="row">
+    <div class="col-md-12">
+      <h4>最近播放</h4>
+      <div class="list-group list-group-lg list-group-sp"  data-ng-controller="VideosController" data-ng-init="find()">
+        <a herf="#" class="list-group-item clearfix" ng-repeat="video in videos"
+           ng-click="customQQSrc(video.source.id)">
+              <span class="pull-left thumb-md m-r">
+              <img ng-src="{{video.img}}" alt="...">
+              <i class="on b-white right"></i>
+              </span>
+              <span class="clear">
+              <span>{{video.name}}</span>
+              <small class="text-muted clear">{{video.description | limitTo:40}}</small>
+              </span>
+        </a>
+      </div>
+    </div>
 
-  <input type="text" name="url" ng-model="customUrl" />
-  <button ng-click="customSrc()">提交</button>
-  <input type="text" name="url" ng-model="vid" />
-  <button ng-click="customQQSrc()">提交</button>
+    <div class="col-md-12">
+      <div class="form-group">
+        <div class="col-sm-12">
+          <input type="text" class="form-control" ng-model="customUrl">
+        </div>
+      </div>
+      <div class="line line-dashed b-b line-lg pull-in"></div>
 
-  <hr />
+      <div class="form-group">
+        <div class="col-sm-12">
+          <button type="submit" ng-click="customSrc()" class="btn btn-default">自定义播放地址</button>
+          <button type="submit" ng-click="impQQ()" class="btn btn-default">腾讯视频地址</button>
+        </div>
+      </div>
 
-  <div data-ng-controller="VideosController" data-ng-init="find()">
-    <ul>
-      <li ng-repeat="video in videos">
-        <img ng-src="{{video.img}}" />
-        <a href="#" ng-click="customQQSrc(video.source.id)" ><h4>{{video.name}}</h4></a>
-      </li>
-    </ul>
+    </div>
   </div>
-
-
 
 </section>

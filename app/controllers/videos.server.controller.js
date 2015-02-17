@@ -96,7 +96,7 @@ exports.delete = function(req, res) {
  * List of Videos
  */
 exports.list = function(req, res) { 
-	Video.find().sort('-created').populate('user', 'displayName').exec(function(err, videos) {
+	Video.find().sort('-updatedAt').populate('user', 'displayName').limit(20).exec(function(err, videos) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)

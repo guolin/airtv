@@ -53,7 +53,7 @@ angular.module('videos').controller('VideosController', ['$scope', '$stateParams
 
 		// Find a list of Videos
 		$scope.find = function() {
-			$scope.videos = Videos.query();
+			$scope.videos = Videos.query({limit: 3} );
 		};
 
 		// Find existing Video

@@ -35,38 +35,36 @@ var VideoSchema = new Schema({
 
 VideoSchema.statics.getFromUrl = function (url, cb){
     request(url, function (error, response, html) {
-        if (!error && response.statusCode == 200) {
+        if (!error && response.statusCode === 200) {
             var $ = cheerio.load(html);
-            var simple_url = $("meta[itemprop=url]").attr("content");
-            if(!simple_url){
-                simple_url = url;
-            }
+            var simple_url = $('meta[itemprop=url]').attr('content');
+            if (!simple_url) simple_url = url;
             var id = url.match(/vid=(\w+)/);
-            if(id){
+            if (id) {
                 id = id[1];
-            }else{
-                var u = $("meta[itemprop=url]").attr("content");
-                if(u && u.match(/(\w+).html/)){
+            } else {
+                var u = $('meta[itemprop=url]').attr('content');
+                if (u && u.match(/(\w+).html/)) {
                     id = u.match(/(\w+).html/);
-                    id = id[1]
-                }else{
+                    id = id[1];
+                } else {
                     id = html.match(/vid=(\w+)/);
-                    if(id){id = id[1]}
+                    if(id) id = id[1];
                 }
             }
-            var img = $("meta[itemprop=image]").attr("content");
+            var img = $('meta[itemprop=image]').attr('content');
             if(!img){
-                img = $(".album_pic img").attr("src");
+                img = $('.album_pic img').attr('src');
             }
-            var description = $("meta[itemprop=description]").attr("content");
-            var name = $("#h1_title").text();
+            var description = $('meta[itemprop=description]').attr('content');
+            var name = $('#h1_title').text();
 
             var video = {
                 name:name,
                 img:img,
                 description:description,
                 source:{
-                    site:"qq",
+                    site:'qq',
                     id:id,
                     url:simple_url
                 }

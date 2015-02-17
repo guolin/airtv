@@ -6,5 +6,5 @@ angular.module('core').
         function($http){
             this.get = function(url){
                 return $http.get('/api/short/?url='+url);
-            }
+            };
         }]);

@@ -4,7 +4,7 @@
 ApplicationConfiguration.registerModule('core');
 
 angular.module('core').
-    factory('socket',["$rootScope", function ($rootScope) {
+    factory('socket',['$rootScope', function ($rootScope) {
     var socket = io.connect();
     return {
         on: function (eventName, callback) {
@@ -23,7 +23,7 @@ angular.module('core').
                         callback.apply(socket, args);
                     }
                 });
-            })
+            });
         },
         socket:socket
     };

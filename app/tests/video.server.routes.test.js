@@ -17,7 +17,7 @@ var credentials, user, video;
  * Video routes tests
  */
 
-describe("video imp tests", function(){
+describe('video imp tests', function(){
     beforeEach(function(done) {
         // Create user credentials
         credentials = {
@@ -66,7 +66,7 @@ describe("video imp tests", function(){
 
                 // Save a new Video
                 agent.post('/videos/imp')
-                    .send({url:"http://v.qq.com/cover/7/7kbmjfeco599lp2/o0015mpip8x.html"})
+                    .send({url: 'http://v.qq.com/cover/7/7kbmjfeco599lp2/o0015mpip8x.html'})
                     .expect(200)
                     .end(function(videoSaveErr, videoSaveRes) {
                         if (videoSaveErr) done(videoSaveErr);

@@ -6,6 +6,7 @@ tv端打开网页 /tv
 ## 环境变量
 
 * MONGO_URL: mongo地址
+* PORT: 端口 默认3000
 * NODE_ENV: (development || production)
 * MAILER_FROM: 发件人
 * MAILER_SERVICE_PROVIDER： 发件服务器
